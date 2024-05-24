@@ -90,7 +90,7 @@ Uses [the Spring Zeebe SDK](https://docs.camunda.io/docs/apis-tools/spring-zeebe
          zeebe.client.security.plaintext=true
          ```
 
-         Note that these URLs are `http`, not `https. The docs tell us `https`, but that gets overridden in the SDK by the fact that `plaintext`is true.`http` is a more accurate reflection of your local self-managed environment, which does not have TLS/https configured.
+         _Note:_ these URLs are `http`, not `https`. The docs tell us `https`, but that gets overridden in the SDK by the fact that `plaintext`is true.`http` is a more accurate reflection of your local self-managed environment, which does not have TLS/https configured.
 
    3. Create a worker
       1. src/main/java/com/your-choice/handle_payment
