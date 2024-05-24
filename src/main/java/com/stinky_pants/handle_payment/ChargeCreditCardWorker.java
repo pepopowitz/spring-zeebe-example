@@ -13,10 +13,15 @@ import org.springframework.stereotype.Component;
 public class ChargeCreditCardWorker {
   private final static Logger LOG = LoggerFactory.getLogger(ChargeCreditCardWorker.class);
 
-  @JobWorker(type = "charge-credit-card")
-  public Map<String, Integer> chargeCreditCard(final ActivatedJob job) {
+  public record ChargeRequest(
+      Double total,
+      Double totalWithTax) {
+  }
 
-    final int totalWithTax = (Integer) job.getVariablesAsMap().get("totalWithTax");
+  @JobWorker(type = "charge-credit-card")
+  public Map<String, Double> chargeCreditCard(final ActivatedJob job) {
+
+    final double totalWithTax = job.getVariablesAsType(ChargeRequest.class).totalWithTax;
 
     // Pretend we're actually charging the credit card here
     LOG.info("charging credit card: {}", totalWithTax);
